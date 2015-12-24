@@ -14,7 +14,7 @@ public class CombinedContainer<T extends Resource> implements ResourceContainer<
 	private List<ResourceContainer<T>> containers = new ArrayList<ResourceContainer<T>>();
 	private ResourceContainer<?> parent;
 	private String name;
-	
+
 	@SuppressWarnings("unchecked")
 	public CombinedContainer(ResourceContainer<?> parent, String name, ResourceContainer<?>...containers) {
 		this.parent = parent;
@@ -25,7 +25,7 @@ public class CombinedContainer<T extends Resource> implements ResourceContainer<
 			}
 		}
 	}
-	
+
 	@Override
 	public String getContentType() {
 		return Resource.CONTENT_TYPE_DIRECTORY;
@@ -60,6 +60,11 @@ public class CombinedContainer<T extends Resource> implements ResourceContainer<
 					current = containersToLoop.size() > 0 ? containersToLoop.remove(0).iterator() : null;
 				}
 				return current == null ? null : current.next();
+			}
+
+			@Override
+			public void remove() {
+
 			}
 		};
 	}
